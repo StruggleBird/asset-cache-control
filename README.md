@@ -1,8 +1,8 @@
 # asset-cache-control
-基于maven插件的缓存控制工具，通过修改资源url的参数，比如添加版本号或者hash参数的形式，有效的防止浏览器缓存
+###基于maven插件的缓存控制工具，通过修改资源url的参数，比如添加版本号或者hash参数的形式，有效的防止浏览器缓存
 
 目前该功能可用于避免js、css、image 三种文件类型缓存
-====
+
 ###用法：
 
 1.添加插件asset-cache-control 到pom文件中：
