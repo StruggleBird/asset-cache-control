@@ -23,7 +23,7 @@ import org.apache.maven.plugin.logging.Log;
 
 
 /**
- * @goal staticproc
+ * @goal flushcache
  * @phase process-resources
  * @author Ternence
  * @date 2015年1月15日
