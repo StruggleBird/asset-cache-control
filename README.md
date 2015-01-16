@@ -46,23 +46,24 @@
 mvn asset-cache-control:flushcache 
 
 该命令会自动添加版本号或者时间戳到静态资源URL后面，例如 ：
+
 原始：
 ```html
 <script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js"></script>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 ```
 
-执行命令后：
+执行后效果：
 
 版本号模式
 ```html
-	<script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js?v=1.1.0"></script>
-	<link href="/css/bootstrap.min.css?v=1.1.0" rel="stylesheet">
+	<script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?v=1.1.0"></script>
+	<link href="http://res.github.com/css/bootstrap.min.css?v=1.1.0" rel="stylesheet">
 ```
 
 时间戳模式
 ```html
-  <script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js?t=14298124845"></script>
-	<link href="/css/bootstrap.min.css?t=1.1.0?t=14298124845" rel="stylesheet">
+  <script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?t=14298124845"></script>
+  <link href="http://res.github.com/css/bootstrap.min.css?t=1.1.0?t=14298124845" rel="stylesheet">
 ```
 
