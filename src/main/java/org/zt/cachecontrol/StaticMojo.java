@@ -24,7 +24,7 @@ import org.apache.maven.plugin.logging.Log;
 
 /**
  * @goal flushcache
- * @phase process-resources
+ * @phase prepare-package
  * @author Ternence
  * @date 2015年1月15日
  */
