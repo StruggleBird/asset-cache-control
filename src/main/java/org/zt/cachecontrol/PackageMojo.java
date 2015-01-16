@@ -13,7 +13,7 @@ public class PackageMojo extends AbstractMojo {
 
     private Log log = getLog(); // LogFactory.getLog(JmMinMojo.class);
     /**
-     * web目录,jiemai-web的web目录为：webapp，默认的maven工程web目录为：src/main/webapp。
+     * web目录,默认的maven工程web目录为：src/main/webapp。
      * 
      * @parameter alias="webAppSourceDirectory" expression="${pkg.webAppSourceDirectory}"
      *            default-value="src/main/webapp"
