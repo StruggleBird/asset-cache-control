@@ -13,10 +13,10 @@
 			<version>0.0.2</version>
 			<executions>
 				<execution>
-					<id>staticproc</id>
+					<id>flushcache</id>
 					<phase>process-resources</phase>
 					<goals>
-						<goal>staticproc</goal>
+						<goal>flushcache</goal>
 					</goals>
 					<configuration>
 						<!-- 需要替换静态路径文件的目录 -->
@@ -42,7 +42,7 @@
 ====
 2、执行命令：
 执行maven命令，用来替换工程中所有的动态文件中引用的静态资源URL路径。
-mvn asset-cache-control:staticproc 
+mvn asset-cache-control:flushcache 
 
 该命令会自动添加版本号或者时间戳到静态资源URL后面，例如 ：
 原始：
