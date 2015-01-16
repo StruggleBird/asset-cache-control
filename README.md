@@ -16,24 +16,26 @@
 			<version>0.0.2</version>
 			<executions>
 				<execution>
-					<id>flushcache</id>
-					<phase>process-resources</phase>
+					<id>version</id>
+					<phase>prepare-package</phase>
 					<goals>
-						<goal>flushcache</goal>
+						<goal>version</goal>
 					</goals>
 					<configuration>
+						<!-- 后缀 -->
+						<suffixs>
+							<suffix>jsp</suffix>
+						</suffixs>
 						<!-- 需要替换静态路径文件的目录 -->
-						<ver>${project.version}</ver>
+						<!-- <version>${project.version}</version> -->
 						<!-- 需要打包的静态资源目录 -->
-						<staticDirs>
-							<staticDir>css</staticDir>
-							<staticDir>fckeditor</staticDir>
-							<staticDir>font</staticDir>
-							<staticDir>html</staticDir>
-							<staticDir>images</staticDir>
-							<staticDir>jquery</staticDir>
-							<staticDir>js</staticDir>
-						</staticDirs>
+						<resourcesDirs>
+							<resourcesDir>css</resourcesDir>
+							<resourcesDir>font</resourcesDir>
+							<resourcesDir>html</resourcesDir>
+							<resourcesDir>images</resourcesDir>
+							<resourcesDir>js</resourcesDir>
+						</resourcesDirs>
 					</configuration>
 				</execution>
 			</executions>
