@@ -45,7 +45,7 @@
 执行maven命令，用来替换工程中所有的动态文件中引用的静态资源URL路径。
 mvn asset-cache-control:flushcache 
 
-该命令会自动添加版本号或者时间戳到静态资源URL后面，例如 ：
+该命令会自动添加版本号或者时间戳到静态资源URL后面，自动添加静态资源域名在url前面（如果有配置静态资源域名），例如 ：
 
 原始：
 ```html
@@ -64,6 +64,6 @@ mvn asset-cache-control:flushcache
 时间戳模式
 ```html
   <script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?t=14298124845"></script>
-  <link href="http://res.github.com/css/bootstrap.min.css?t=1.1.0?t=14298124845" rel="stylesheet">
+  <link href="http://res.github.com/css/bootstrap.min.css?t=14298124845" rel="stylesheet">
 ```
 
