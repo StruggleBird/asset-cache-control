@@ -48,7 +48,7 @@
 2.执行命令：
 执行maven命令，用来替换工程中所有的动态文件中引用的静态资源URL路径。
 ```html
-mvn asset-cache-control:flushcache 
+mvn asset-cache-control:version
 ```
 
 该命令会自动添加版本号或者时间戳到静态资源URL后面，自动添加静态资源域名在url前面（如果有配置静态资源域名），例如 ：

@@ -132,11 +132,11 @@ public class ResourceVersionMojo extends ResourceMojo {
 		String newURL = "";
 		addr = addr.trim();
 		if (addr.startsWith("/")) {
-			newURL = resourcesURL + addr.substring(1);
+			newURL = resourcesURL + addr;
 		} else if (addr.indexOf("http://") != -1) {
 			newURL = addr;
 		} else {
-			newURL = resourcesURL + addr;
+			newURL = resourcesURL + "/" + addr;
 		}
 
 		if (newURL.contains("?")) {

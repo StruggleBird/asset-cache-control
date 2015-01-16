@@ -109,8 +109,13 @@ public class ResourceMojo extends AbstractMojo {
 		if (ArrayUtils.isEmpty(suffixs)) {
 			suffixs = new String[] { "jsp", "htm", "html", "ftl" };
 		}
-		
+		//设置webapp根目录
 		webappDir = baseDir + File.separator + webappDir;
+		
+		//优化资源url的路径
+		if (StringUtils.endsWith(resourcesURL, "/")||StringUtils.endsWith(resourcesURL, "\\")) {
+			resourcesURL = resourcesURL.substring(0, resourcesURL.length()-1);
+		}
 
 	}
 
