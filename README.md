@@ -50,7 +50,8 @@
 2.执行命令：
 执行maven命令，用来替换工程中所有的动态文件中引用的静态资源URL路径。
 ```html
- 打版本命令： mvn asset-cache-control:version
+打版本命令： mvn asset-cache-control:version
+
 打静态资源到独立war包命令：mvn asset-cache-control:package
 ```
 
