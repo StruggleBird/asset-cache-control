@@ -12,12 +12,14 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 
 /**
- * 给指定的资源文件打上版本号
+ * 抽象类 
+ * 
+ * 用于组装输入参数
  * 
  * @author Ternence
  * @date 2015年1月15日
  */
-public class ResourceMojo extends AbstractMojo {
+public abstract class ResourceMojo extends AbstractMojo {
 
 	/**
 	 * @parameter expression="${version.resourcesURL}" alias="resourcesURL"
@@ -49,28 +51,7 @@ public class ResourceMojo extends AbstractMojo {
 	 * @parameter expression="${version.suffixs}" alias="suffixs"
 	 */
 	protected String[] suffixs;
-
-	public ResourceMojo() {
-
-	}
-
-	static final int BUFFER = 2048;
-
-	protected Log log = getLog();
-
-	public static Pattern IMAGES_PATTERN = Pattern
-			.compile(
-					"<img[\\s\\S]+?src\\s*=\\s*[\"|\']\\s*([/images|images].+\\.[(png)|(jpg)|(gif)|(bmp)|(jpeg)]+.*?)[\"|\']{1}",
-					Pattern.CASE_INSENSITIVE);
-
-	public static Pattern JS_PATTERN = Pattern.compile(
-			"<script[\\s\\S]+?src\\s*=\\s*[\"|\'](.+\\.js.*?)[\"|\']{1}",
-			Pattern.CASE_INSENSITIVE);
-
-	public static Pattern CSS_PATTERN = Pattern.compile(
-			"<link[\\s\\S]+?href\\s*=\\s*[\"|\'](.+\\.css.*?)[\"|\']{1}",
-			Pattern.CASE_INSENSITIVE);
-
+	
 	/**
 	 * @parameter default-value="${basedir}"
 	 */
@@ -88,7 +69,24 @@ public class ResourceMojo extends AbstractMojo {
 	 * 
 	 * @parameter default-value="${project.artifactId}"
 	 */
-	protected String statifFile;
+	protected String artifactId;
+
+	protected Log log = getLog();
+
+	public static Pattern IMAGES_PATTERN = Pattern
+			.compile(
+					"<img[\\s\\S]+?src\\s*=\\s*[\"|\']\\s*([/images|images].+\\.[(png)|(jpg)|(gif)|(bmp)|(jpeg)]+.*?)[\"|\']{1}",
+					Pattern.CASE_INSENSITIVE);
+
+	public static Pattern JS_PATTERN = Pattern.compile(
+			"<script[\\s\\S]+?src\\s*=\\s*[\"|\'](.+\\.js.*?)[\"|\']{1}",
+			Pattern.CASE_INSENSITIVE);
+
+	public static Pattern CSS_PATTERN = Pattern.compile(
+			"<link[\\s\\S]+?href\\s*=\\s*[\"|\'](.+\\.css.*?)[\"|\']{1}",
+			Pattern.CASE_INSENSITIVE);
+
+	
 
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException {
@@ -109,12 +107,13 @@ public class ResourceMojo extends AbstractMojo {
 		if (ArrayUtils.isEmpty(suffixs)) {
 			suffixs = new String[] { "jsp", "htm", "html", "ftl" };
 		}
-		//设置webapp根目录
+		// 设置webapp根目录
 		webappDir = baseDir + File.separator + webappDir;
-		
-		//优化资源url的路径
-		if (StringUtils.endsWith(resourcesURL, "/")||StringUtils.endsWith(resourcesURL, "\\")) {
-			resourcesURL = resourcesURL.substring(0, resourcesURL.length()-1);
+
+		// 优化资源url的路径
+		if (StringUtils.endsWith(resourcesURL, "/")
+				|| StringUtils.endsWith(resourcesURL, "\\")) {
+			resourcesURL = resourcesURL.substring(0, resourcesURL.length() - 1);
 		}
 
 	}
@@ -195,18 +194,18 @@ public class ResourceMojo extends AbstractMojo {
 	}
 
 	/**
-	 * @return the statifFile
+	 * @return the artifactId
 	 */
-	public String getStatifFile() {
-		return statifFile;
+	public String getArtifactId() {
+		return artifactId;
 	}
 
 	/**
-	 * @param statifFile
-	 *            the statifFile to set
+	 * @param artifactId
+	 *            the artifactId to set
 	 */
-	public void setStatifFile(String statifFile) {
-		this.statifFile = statifFile;
+	public void setArtifactId(String artifactId) {
+		this.artifactId = artifactId;
 	}
 
 	/**

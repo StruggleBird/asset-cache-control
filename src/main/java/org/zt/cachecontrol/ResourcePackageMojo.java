@@ -14,7 +14,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * 给指定的资源文件打上版本号
+ * 将resourcesDirs中指定的资源目录打成war包
  * 
  * @goal package
  * @phase prepare-package
@@ -32,8 +32,8 @@ public class ResourcePackageMojo extends ResourceMojo {
 	private void packageResourceToZip() {
 		try {
 			FileOutputStream dest = new FileOutputStream(target
-					+ File.separator + statifFile + "-static-" + version
-					+ ".zip");
+					+ File.separator + artifactId + "-resources-" + version
+					+ ".war");
 			ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(
 					dest));
 			byte[] buffere = new byte[8192];
@@ -47,7 +47,7 @@ public class ResourcePackageMojo extends ResourceMojo {
 					File file = (File) fileList.get(i);
 					out.putNextEntry(new ZipEntry(getEntryName(file)));
 					bis = new BufferedInputStream(new FileInputStream(file));
-					log.info("正在压缩" + file.getAbsolutePath());
+					log.info("正在打包：" + file.getAbsolutePath());
 					while (true) {
 						length = bis.read(buffere);
 						if (length == -1)
@@ -60,7 +60,7 @@ public class ResourcePackageMojo extends ResourceMojo {
 			}
 			out.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 	}
 
