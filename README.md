@@ -13,7 +13,7 @@
 		<plugin>
 			<groupId>org.zt</groupId>
 			<artifactId>asset-cache-control</artifactId>
-			<version>0.0.2</version>
+			<version>1.0.0</version>
 			<executions>
 				<execution>
 					<id>version</id>
