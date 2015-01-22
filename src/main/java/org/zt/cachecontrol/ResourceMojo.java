@@ -75,7 +75,7 @@ public abstract class ResourceMojo extends AbstractMojo {
 
 	public static Pattern IMAGES_PATTERN = Pattern
 			.compile(
-					"<img[\\s\\S]+?src\\s*=\\s*[\"|\']\\s*(.+\\.[(png)|(jpg)|(gif)|(bmp)|(jpeg)]+.*?)[\"|\']{1}",
+					"<img[\\s\\S]+?src\\s*=\\s*[\"|\']\\s*(.+\\.(png|jpg|gif|bmp|jpeg)+.*?)[\"|\']{1}",
 					Pattern.CASE_INSENSITIVE);
 
 	public static Pattern JS_PATTERN = Pattern.compile(
