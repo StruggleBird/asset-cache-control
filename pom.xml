@@ -85,4 +85,10 @@
 			</plugin>
 		</plugins>
 	</build>
+	<scm>
+		<url>github.com/StruggleBird/asset-cache-control</url>
+	</scm>
+	<url>github.com/StruggleBird/asset-cache-control</url>
+	<name>asset-cache-control</name>
+	<description>A Cache control tookit,By modifying the resource access path、parameters to avoid browser caching ... </description>
 </project>
