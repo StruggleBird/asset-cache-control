@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 
 import junit.framework.TestCase;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -73,6 +74,25 @@ public class ResourceVersionMojoTest extends TestCase {
 		assertTrue(m.find());
 		assertEquals("./images/logos/maven-feather.png", m.group(1));
 
+	}
+	
+	@Test
+	public void testImageReplace(){
+		ResourceVersionMojo resourceVersionMojo = new ResourceVersionMojo();
+		resourceVersionMojo.setVersion("1.0.0");
+		resourceVersionMojo.setResourcesURL("http://res.github.com");
+		String res = resourceVersionMojo.resolveImageRefer("<img alt=\"Built by Maven\" src=\"/images/logos/maven-feather.png\"/>");
+		assertTrue(res.equals("<img alt=\"Built by Maven\" src=\"http://res.github.com/images/logos/maven-feather.png?v=1.0.0\"/>"));
+		
+		res = resourceVersionMojo.resolveImageRefer("<img alt=\"Built by Maven\" src=\"images/logos/maven-feather.png\"/>");
+		assertTrue(res.equals("<img alt=\"Built by Maven\" src=\"http://res.github.com/images/logos/maven-feather.png?v=1.0.0\"/>"));
+		
+		
+		res = resourceVersionMojo.resolveImageRefer("<img alt=\"Built by Maven\" src=\"img/logos/maven-feather.png\"/>");
+		assertTrue(res.equals("<img alt=\"Built by Maven\" src=\"http://res.github.com/img/logos/maven-feather.png?v=1.0.0\"/>"));
+		
+		res = resourceVersionMojo.resolveImageRefer("<img alt=\"Built by Maven\" src=\"/img/logos/maven-feather.png\"/>");
+		assertTrue(res.equals("<img alt=\"Built by Maven\" src=\"http://res.github.com/img/logos/maven-feather.png?v=1.0.0\"/>"));
 	}
 
 }
