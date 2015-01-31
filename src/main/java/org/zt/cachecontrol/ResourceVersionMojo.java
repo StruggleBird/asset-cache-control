@@ -55,7 +55,7 @@ public class ResourceVersionMojo extends ResourceMojo {
             String fileName = file.getName();
             String sufix = FilenameUtils.getExtension(fileName);
             if (StringUtils.isNotEmpty(sufix) && ArrayUtils.contains(suffixs, sufix.toLowerCase())) {
-                log.info("processing file:" + file.getAbsolutePath());
+                log.info("Versioning file:" + file.getAbsolutePath());
                 String pageText = FileUtils.readFileToString(file, "UTF-8");
                 pageText = handleFile(pageText);
                 FileUtils.writeStringToFile(file, pageText, "UTF-8");
@@ -82,7 +82,7 @@ public class ResourceVersionMojo extends ResourceMojo {
             }
             String pfull = matcher.group();
             String jsdirPart = matcher.group(1);
-            pfull = pfull.substring(0, matcher.start(1) - matcher.start()) + resolveStaticAddr(jsdirPart.trim()) + pfull.charAt(pfull.length() - 1);
+            pfull = pfull.substring(0, matcher.start(1) - matcher.start()) + versionStaticURL(jsdirPart.trim()) + pfull.charAt(pfull.length() - 1);
             matcher.appendReplacement(sb, Matcher.quoteReplacement(pfull));
         }
         matcher.appendTail(sb);
@@ -100,7 +100,7 @@ public class ResourceVersionMojo extends ResourceMojo {
             String pfull = matcher.group();
 
             String jsdirPart = matcher.group(1);
-            pfull = pfull.substring(0, matcher.start(1) - matcher.start()) + resolveStaticAddr(jsdirPart.trim()) + pfull.charAt(pfull.length() - 1);
+            pfull = pfull.substring(0, matcher.start(1) - matcher.start()) + versionStaticURL(jsdirPart.trim()) + pfull.charAt(pfull.length() - 1);
             matcher.appendReplacement(sb, Matcher.quoteReplacement(pfull));
         }
         matcher.appendTail(sb);
@@ -114,14 +114,14 @@ public class ResourceVersionMojo extends ResourceMojo {
         while (matcher.find()) {
             String pfull = matcher.group();
             String cssPath = matcher.group(1);
-            pfull = pfull.substring(0, matcher.start(1) - matcher.start()) + resolveStaticAddr(cssPath.trim()) + pfull.charAt(pfull.length() - 1);
+            pfull = pfull.substring(0, matcher.start(1) - matcher.start()) + versionStaticURL(cssPath.trim()) + pfull.charAt(pfull.length() - 1);
             matcher.appendReplacement(sb, Matcher.quoteReplacement(pfull));
         }
         matcher.appendTail(sb);
         return sb.toString();
     }
 
-    private String resolveStaticAddr(String addr) {
+    private String versionStaticURL(String addr) {
         String newURL = addr.trim();
         if (StringUtils.isNotBlank(resourcesURL)) {
             if (newURL.startsWith("/")) {

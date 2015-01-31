@@ -47,7 +47,7 @@ public class ResourcePackageMojo extends ResourceMojo {
 					File file = (File) fileList.get(i);
 					out.putNextEntry(new ZipEntry(getEntryName(file)));
 					bis = new BufferedInputStream(new FileInputStream(file));
-					log.info("正在打包：" + file.getAbsolutePath());
+					log.info("Packaging file：" + file.getAbsolutePath());
 					while (true) {
 						length = bis.read(buffere);
 						if (length == -1)
