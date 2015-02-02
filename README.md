@@ -21,30 +21,17 @@
 					<goals>
 						<goal>version</goal>
 					</goals>
-					<configuration>
-						<!-- 资源URL前缀,可选 -->
-						<resourcesURL>http://res.github.com/</resourcesURL>
-						<!-- 后缀，可选，默认支持jsp、html、htm、ftl，如果填写则覆盖默认文件后缀，只会处理指定的文件后缀 -->
-						<suffixs>
-							<suffix>jsp</suffix>
-						</suffixs>
-						<!-- 版本号，给资源url添加的版本号，如果为空，则打上当前时间戳 -->
-						<version>${project.version}</version>
-						<!-- 需要打包的静态资源目录，可选，package命令需要，如果指定，则只打当前指定目录下面的文件到静态资源包中 -->
-						<resourcesDirs>
-							<resourcesDir>css</resourcesDir>
-							<resourcesDir>font</resourcesDir>
-							<resourcesDir>html</resourcesDir>
-							<resourcesDir>images</resourcesDir>
-							<resourcesDir>js</resourcesDir>
-						</resourcesDirs>
-					</configuration>
 				</execution>
 			</executions>
 		</plugin>
 	</plugins>
 </build>
 ```
+###其他配置：
+resourcesURL：定义资源URL前缀
+suffixs：文件后缀，允许多个，用于声明哪些后缀的文件可以做打版本操作，默认支持jsp、html、htm、ftl，如果填写则覆盖默认文件后缀，只会处理指定的文件后缀
+version：版本号，给资源url添加的版本号，如果为空，则打上当前时间戳
+resourcesDirs：待处理的资源目录，允许多个。如果指定，则只打当前指定目录下面的文件到静态资源包中
 
 
 2.执行命令：
