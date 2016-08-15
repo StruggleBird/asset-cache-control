@@ -121,33 +121,33 @@ public class ResourceVersionMojo extends ResourceMojo {
         return sb.toString();
     }
 
- 	public static String setParam(String url, String paramname,String paramvalue){
-        
- 	    if(StringUtils.isBlank(url)){
- 	       return "";
- 	    }
-        
-		String reg1 = "(^.+[?&]" + paramname + "=)(.*?)(?=(&.*|$))";
-		if(Pattern.compile(reg1).matcher(url).matches()){
-			return url.replace(reg1,  paramvalue);
-		}
-		if(url.contains("?")){
-			return url + "&" + paramname + "=" + paramvalue;
-		}
-		return url + "?" + paramname + "=" + paramvalue;
-	}
- 	
+    public static String setParam(String url, String paramname, String paramvalue) {
+
+        if (StringUtils.isBlank(url)) {
+            return "";
+        }
+
+        String reg1 = "(" + paramname + "=.*?)(?=(&.*|$))";
+        if (Pattern.compile(reg1).matcher(url).find()) {
+            return url.replaceFirst(reg1, paramname + "=" + paramvalue);
+        }
+        if (url.contains("?")) {
+            return url + "&" + paramname + "=" + paramvalue;
+        }
+        return url + "?" + paramname + "=" + paramvalue;
+    }
+
     private String versionStaticURL(String addr) {
-       String newURL = addr.trim();
-       if (StringUtils.isNotBlank(resourcesURL)) {
-           if (newURL.startsWith("/")) {
-               newURL = resourcesURL + newURL;
-           } else if (newURL.indexOf("http://") != -1) {
-               
-           } else {
-               newURL = resourcesURL + "/" + newURL;
-           }
-       }
-       return setParam(newURL,"v",version);
+        String newURL = addr.trim();
+        if (StringUtils.isNotBlank(resourcesURL)) {
+            if (newURL.startsWith("/")) {
+                newURL = resourcesURL + newURL;
+            } else if (newURL.indexOf("http://") != -1) {
+
+            } else {
+                newURL = resourcesURL + "/" + newURL;
+            }
+        }
+        return setParam(newURL, "v", version);
     }
 }
