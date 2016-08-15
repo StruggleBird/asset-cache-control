@@ -122,7 +122,11 @@ public class ResourceVersionMojo extends ResourceMojo {
     }
 
  	public static String setParam(String url, String paramname,String paramvalue){
-        if(StringUtils.isNotBlank(url))return "";
+        
+ 	    if(StringUtils.isBlank(url)){
+ 	       return "";
+ 	    }
+        
 		String reg1 = "(^.+[?&]" + paramname + "=)(.*?)(?=(&.*|$))";
 		if(Pattern.compile(reg1).matcher(url).matches()){
 			return url.replace(reg1,  paramvalue);
@@ -132,17 +136,18 @@ public class ResourceVersionMojo extends ResourceMojo {
 		}
 		return url + "?" + paramname + "=" + paramvalue;
 	}
-private String versionStaticURL(String addr) {
-   String newURL = addr.trim();
-   if (StringUtils.isNotBlank(resourcesURL)) {
-       if (newURL.startsWith("/")) {
-           newURL = resourcesURL + newURL;
-       } else if (newURL.indexOf("http://") != -1) {
-
-       } else {
-           newURL = resourcesURL + "/" + newURL;
+ 	
+    private String versionStaticURL(String addr) {
+       String newURL = addr.trim();
+       if (StringUtils.isNotBlank(resourcesURL)) {
+           if (newURL.startsWith("/")) {
+               newURL = resourcesURL + newURL;
+           } else if (newURL.indexOf("http://") != -1) {
+               
+           } else {
+               newURL = resourcesURL + "/" + newURL;
+           }
        }
-   }
-   return setParam(newURL,"v",version);
-}
+       return setParam(newURL,"v",version);
+    }
 }
