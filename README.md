@@ -13,7 +13,7 @@
 		<plugin>
 			<groupId>org.zt</groupId>
 			<artifactId>asset-cache-control</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.2</version>
 			<executions>
 				<execution>
 					<id>version</id>
@@ -53,10 +53,10 @@
 
 执行后效果：
 
-版本号模式
+版本号模式:在版本号不变更的情况下发版，需要刷新浏览器端缓存，所以版本号的规则是"${project.version}-5位随机字母或数字"
 ```html
-	<script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?v=1.1.0"></script>
-	<link href="http://res.github.com/css/bootstrap.min.css?v=1.1.0" rel="stylesheet">
+	<script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?v=1.1.0-2543d"></script>
+	<link href="http://res.github.com/css/bootstrap.min.css?v=1.1.0-2543d" rel="stylesheet">
 ```
 
 时间戳模式
