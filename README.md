@@ -110,5 +110,5 @@
 **打包：**
 接着执行`mvn package`打包命令，将会把修改后的文件打入war包中，该war包发布到线上时已经达到我们的目的了——去除浏览器缓存。
 
-**静态资源独立包**
+**静态独立资源包：**
 执行`mvn asset-cache-control:package` 后 ，将会看到工程输出目录target下面会产生一个新的war包 xxx-resources-xxx.war ,该war包中将只存放我们在上面配置中指定目录下的文件 css 、js、images 等 。
