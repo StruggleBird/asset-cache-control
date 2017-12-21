@@ -69,40 +69,40 @@
 
 **示例：**
 ```xml
-    <plugin>
-		<groupId>org.zt</groupId>
-		<artifactId>asset-cache-control</artifactId>
-		<version>1.0.2</version>
-		<executions>
-			<execution>
-				<id>version</id>
-				<phase>prepare-package</phase>
-				<goals>
-					<goal>version</goal>
-				</goals>
-				<configuration>
-					<!-- 版本号，给资源url添加的版本号，如果为空，则打上当前时间戳 -->
-					<version>${project.version}</version>
-				</configuration>
-			</execution>
-			<execution>
-				<id>package</id>
-				<phase>prepare-package</phase>
-				<goals>
-					<goal>package</goal>
-				</goals>
-				<configuration>
-					<!-- 版本号，给资源url添加的版本号，如果为空，则打上当前时间戳 -->
-					<version>${project.version}</version>
-					<resourcesDirs>
-						<resourcesDir>css</resourcesDir>
-						<resourcesDir>images</resourcesDir>
-						<resourcesDir>js</resourcesDir>
-					</resourcesDirs>
-				</configuration>
-			</execution>
-		</executions>
-	</plugin>
+ <plugin>
+	<groupId>org.zt</groupId>
+	<artifactId>asset-cache-control</artifactId>
+	<version>1.0.2</version>
+	<executions>
+		<execution>
+			<id>version</id>
+			<phase>prepare-package</phase>
+			<goals>
+				<goal>version</goal>
+			</goals>
+			<configuration>
+				<!-- 版本号，给资源url添加的版本号，如果为空，则打上当前时间戳 -->
+				<version>${project.version}</version>
+			</configuration>
+		</execution>
+		<execution>
+			<id>package</id>
+			<phase>prepare-package</phase>
+			<goals>
+				<goal>package</goal>
+			</goals>
+			<configuration>
+				<!-- 版本号，给资源url添加的版本号，如果为空，则打上当前时间戳 -->
+				<version>${project.version}</version>
+				<resourcesDirs>
+					<resourcesDir>css</resourcesDir>
+					<resourcesDir>images</resourcesDir>
+					<resourcesDir>js</resourcesDir>
+				</resourcesDirs>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
 ```
 **打上版本号：**
 将以上配置添加到web工程根目录下的pom 文件的plugins节点中 ，然后执行 `mvn asset-cache-control:version` 命令，则该web工程src/main/webapp目录下的动态模板文件例如jsp文件的内容将会发生改变。这些文件中静态资源的链接地址后面会添加一个v参数 ，这说明我们的命令执行成功了。
