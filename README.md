@@ -9,22 +9,22 @@
 
 ```xml
 <build>
-	<plugins>
-		<plugin>
-			<groupId>org.zt</groupId>
-			<artifactId>asset-cache-control</artifactId>
-			<version>1.0.2</version>
-			<executions>
-				<execution>
-					<id>version</id>
-					<phase>prepare-package</phase>
-					<goals>
-						<goal>version</goal>
-					</goals>
-				</execution>
-			</executions>
-		</plugin>
-	</plugins>
+    <plugins>
+        <plugin>
+            <groupId>org.zt</groupId>
+            <artifactId>asset-cache-control</artifactId>
+            <version>1.0.2</version>
+            <executions>
+                <execution>
+                    <id>version</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>version</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
 </build>
 ```
 #### 其他配置：
@@ -55,53 +55,53 @@
 
 执行后效果：
 
-版本号模式(在版本号不变更的情况下发版，需要刷新浏览器端缓存，所以版本号的规则是"${project.version}-5位随机值")
+版本号模式(在版本号不变更的情况下发版，需要刷新浏览器端缓存，所以版本号的规则是"${project.version}-5位随机值"，每次构建出的v参数值都是不一样的)
 ```html
-	<script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?v=1.1.0-2543d"></script>
-	<link href="http://res.github.com/css/bootstrap.min.css?v=1.1.0-2543d" rel="stylesheet">
+<script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?v=1.1.0-2543d"></script>
+<link href="http://res.github.com/css/bootstrap.min.css?v=1.1.0-2543d" rel="stylesheet">
 ```
 
 时间戳模式
 ```html
-  <script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?v=14298124845"></script>
-  <link href="http://res.github.com/css/bootstrap.min.css?v=14298124845" rel="stylesheet">
+<script type="text/javascript" src="http://res.github.com/javascripts/jquery-1.10.2.min.js?v=14298124845"></script>
+<link href="http://res.github.com/css/bootstrap.min.css?v=14298124845" rel="stylesheet">
 ```
 
 **示例：**
 ```xml
  <plugin>
-	<groupId>org.zt</groupId>
-	<artifactId>asset-cache-control</artifactId>
-	<version>1.0.2</version>
-	<executions>
-		<execution>
-			<id>version</id>
-			<phase>prepare-package</phase>
-			<goals>
-				<goal>version</goal>
-			</goals>
-			<configuration>
-				<!-- 版本号，给资源url添加的版本号，如果为空，则打上当前时间戳 -->
-				<version>${project.version}</version>
-			</configuration>
-		</execution>
-		<execution>
-			<id>package</id>
-			<phase>prepare-package</phase>
-			<goals>
-				<goal>package</goal>
-			</goals>
-			<configuration>
-				<!-- 版本号，给资源url添加的版本号，如果为空，则打上当前时间戳 -->
-				<version>${project.version}</version>
-				<resourcesDirs>
-					<resourcesDir>css</resourcesDir>
-					<resourcesDir>images</resourcesDir>
-					<resourcesDir>js</resourcesDir>
-				</resourcesDirs>
-			</configuration>
-		</execution>
-	</executions>
+    <groupId>org.zt</groupId>
+    <artifactId>asset-cache-control</artifactId>
+    <version>1.0.2</version>
+    <executions>
+        <execution>
+            <id>version</id>
+            <phase>prepare-package</phase>
+            <goals>
+                <goal>version</goal>
+            </goals>
+            <configuration>
+                <!-- 版本号模式，给资源url添加的版本号，如果为空，则采用时间戳模式 -->
+                <version>${project.version}</version>
+            </configuration>
+        </execution>
+        <execution>
+            <id>package</id>
+            <phase>prepare-package</phase>
+            <goals>
+                <goal>package</goal>
+            </goals>
+            <configuration>
+                <!-- 版本号模式，给资源url添加的版本号，如果为空，则采用时间戳模式 -->
+                <version>${project.version}</version>
+                <resourcesDirs>
+                    <resourcesDir>css</resourcesDir>
+                    <resourcesDir>images</resourcesDir>
+                    <resourcesDir>js</resourcesDir>
+                </resourcesDirs>
+            </configuration>
+        </execution>
+    </executions>
 </plugin>
 ```
 **打上版本号：**
