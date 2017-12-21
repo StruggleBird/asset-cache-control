@@ -1,9 +1,9 @@
 # asset-cache-control
-###基于maven插件的缓存控制工具，通过修改资源url的请求参数，比如在url后面添加版本号或者时间戳的形式，来有效的防止浏览器缓存。
+### 基于maven插件的缓存控制工具，通过修改资源url的请求参数，比如在url后面添加版本号或者时间戳的形式，来有效的防止浏览器缓存。
 
 目前该功能可用于避免js、css、image 三种文件类型缓存
 
-###用法：
+### 用法：
 
 1.添加插件asset-cache-control 到pom文件中：
 
@@ -27,7 +27,7 @@
 	</plugins>
 </build>
 ```
-####其他配置：
+#### 其他配置：
 
  - ***resourcesURL***：可选，定义资源URL前缀，如果不填，则不修改前缀
  - ***suffixs***：动态模板后缀，可选，允许多个，用于指定哪些后缀的动态模板可以做打版本号操作，默认支持jsp、html、htm、ftl，如果填写则覆盖默认文件后缀，只会处理填写的文件后缀
@@ -68,7 +68,7 @@
 ```
 
 **示例：**
-
+```xml
     <plugin>
 		<groupId>org.zt</groupId>
 		<artifactId>asset-cache-control</artifactId>
@@ -103,7 +103,7 @@
 			</execution>
 		</executions>
 	</plugin>
-
+```
 **打上版本号：**
 将以上配置添加到web工程根目录下的pom 文件的plugins节点中 ，然后执行 `mvn asset-cache-control:version` 命令，则该web工程src/main/webapp目录下的动态模板文件例如jsp文件的内容将会发生改变。这些文件中静态资源的链接地址后面会添加一个v参数 ，这说明我们的命令执行成功了。
 
